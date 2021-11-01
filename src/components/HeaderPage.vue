@@ -1,12 +1,22 @@
 <template>
     <div>
-        <header class="header">header</header>
+        <header class="header">
+            <div class="wrapper">
+                <button @click="logout">Logout</button>
+            </div>
+        </header>
     </div>
 </template>
 
 <script>
     export default {
-        name : "HeaderPage"
+        name : "HeaderPage",
+
+        methods:{
+            logout(){
+                this.$store.dispatch('logout');
+            }
+        }
     }
 </script>
 

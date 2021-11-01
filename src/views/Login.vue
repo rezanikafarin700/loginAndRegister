@@ -27,7 +27,6 @@ export default {
   name: "login",
   data() {
     return {
-      name: "",
       email: "",
       password: "",
     };
@@ -36,11 +35,11 @@ export default {
   methods: {
     login() {
       this.$store.dispatch("login", {
-        name: this.name,
         email: this.email,
         password: this.password,
-        type: "USER",
-      });
+      }).then(()=>{
+          this.$router.push({name : "index"})
+      })
     },
   },
 };

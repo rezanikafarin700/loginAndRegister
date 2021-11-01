@@ -20,6 +20,13 @@ export default new Vuex.Store({
       console.log('SET_DATA user = ',state.user.username);
       localStorage.setItem('user',JSON.stringify(payload));
       axios.defaults.headers.common['Authorization'] = `Bearer ${payload.api_token}`
+    },
+
+    CLEAR_USER_DATA(state){
+      state.user = null;
+      localStorage.removeItem('user');
+      axios.defaults.headers.common['Authrization'] = null;
+      location.reload();
     }
   },
   actions: {
@@ -38,12 +45,16 @@ export default new Vuex.Store({
     login({ commit }, payload) {
       console.log(payload);
       return axios
-        .post(process.env.VUE_APP_URL + "users",payload)
+        .post(process.env.VUE_APP_URL + "login",payload)
         .then(({ data }) => {
           console.log(data);
           commit('SET_DATA',data);
-        });
+        })
     },
+
+    logout({ commit }){
+      commit('CLEAR_USER_DATA');
+    }
 
 
   },

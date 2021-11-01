@@ -2,9 +2,9 @@
   <div>
     <div class="space-top"></div>
     <div class="small-wrapper rtl">
-     user =  {{ user }}
+      {{ user }}
       <hr>
-      <div v-if="user.api_token">
+      <div v-if="user">
           {{ products }}
       </div>
     
@@ -32,7 +32,7 @@ export default {
   },
 
   mounted(){
-      this.user = this.$store.state.user;
+      this.user = localStorage.getItem('user');
   },
 
 
